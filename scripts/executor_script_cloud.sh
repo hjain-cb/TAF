@@ -341,6 +341,8 @@ if [ "$?" -eq 0 ]; then
     exit status
   fi
 else
+  ls
+  pwd
   echo Desc: $desc
   newState=failedInstall
   echo newState=failedInstall>propfile
