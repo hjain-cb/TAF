@@ -341,6 +341,7 @@ if [ "$?" -eq 0 ]; then
     exit status
   fi
 else
+  set -x
   ls
   pwd
   echo Desc: $desc
