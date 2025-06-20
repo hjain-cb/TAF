@@ -105,7 +105,7 @@ fi
 
 # Below "if" block added by UMANG to run columnar tests
 if [ "$server_type" = "SERVERLESS_COLUMNAR" ]; then
-  cluster_info="{\"pod\": \"$capella_api_url\", \"tenant_id\": \"$tenant_id\", \"capella_user\": \"$capella_user\", \"capella_pwd\": \"$capella_password\", \"region\": \"$capella_region\", \"project\": \"$project_id\", \"override_token\": \"$override_token\", \"columnar_image\": \"$cbs_image\", \"override_key\": \"$override_key\"}"
+  cluster_info="{\"pod\": \"$capella_api_url\", \"tenant_id\": \"$tenant_id\", \"capella_user\": \"$capella_user\", \"capella_pwd\": \"$capella_password\", \"region\": \"$capella_region\", \"project\": \"$project_id\", \"instance_id\": \"$instance_id\", \"override_token\": \"$override_token\", \"columnar_image\": \"$cbs_image\", \"override_key\": \"$override_key\"}"
   #echo python signup_user.py -e ${capella_email_prefix} -a $capella_api_url -x $capella_signup_token -r $capella_region
   #cluster_info=`python signup_user.py -e ${capella_email_prefix} -a $capella_api_url -x $capella_signup_token -r $capella_region`
   echo $cluster_info
