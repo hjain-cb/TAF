@@ -71,7 +71,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 pyenv local $PYENV_VERSION
 
-ls
 cd lib/capellaAPI/
 git checkout f9e9626f7cbe9e9a1b509525b7faa38cf8ca8a14
 cd ../../
