@@ -71,6 +71,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 pyenv local $PYENV_VERSION
 
+ls
+pwd
+
 # Install requirements for pip
 python -m pip install -r requirements.txt
 
@@ -341,9 +344,6 @@ if [ "$?" -eq 0 ]; then
     exit status
   fi
 else
-  set -x
-  ls
-  pwd
   echo Desc: $desc
   newState=failedInstall
   echo newState=failedInstall>propfile
