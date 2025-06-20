@@ -58,10 +58,10 @@ class DeltaLakeDatasets(ColumnarBaseTest):
     def tearDown(self):
         self.log_setup_status(self.__class__.__name__, "Started",
                               stage=self.tearDown.__name__)
-        for bucket in self.delta_table_info:
-            self.blob_object.delete_bucket(bucket)
-
-        super(DeltaLakeDatasets, self).tearDown()
+        # for bucket in self.delta_table_info:
+        #     self.blob_object.delete_bucket(bucket)
+        #
+        # super(DeltaLakeDatasets, self).tearDown()
         self.log_setup_status(self.__class__.__name__, "Finished",
                               stage="Teardown")
 
