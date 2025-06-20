@@ -72,7 +72,9 @@ eval "$(pyenv init -)"
 pyenv local $PYENV_VERSION
 
 ls
-pwd
+cd lib/capellaAPI/
+git checkout f9e9626f7cbe9e9a1b509525b7faa38cf8ca8a14
+cd ../../
 
 # Install requirements for pip
 python -m pip install -r requirements.txt
