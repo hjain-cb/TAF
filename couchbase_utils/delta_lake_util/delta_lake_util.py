@@ -127,6 +127,7 @@ class DeltaLakeUtils:
         extra_packages = [
             "org.apache.hadoop:hadoop-common:3.3.4",
             "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5",
+            "org.apache.httpcomponents:httpcore:4.4.13",
         ]
 
         builder = SparkSession.builder.appName(app_name).config(conf=conf)
