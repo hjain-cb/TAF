@@ -97,8 +97,10 @@ class DeltaLakeDatasets(ColumnarBaseTest):
             # we write data.
             for k in range(0, num_delta_tables_per_bucket):
                 delta_table_name = f"delta_table_{k}/"
+                self.log.info(f"delta_table_name {delta_table_name}")
                 self.delta_table_info[blob_bucket_name].append(delta_table_name)
                 if load_data:
+                    self.log.info(f"Data loading started.")
                     # Write in batches of 1000 docs for faster execution and
                     # to prevent overloading memory.
                     start = 0
