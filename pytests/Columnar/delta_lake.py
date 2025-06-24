@@ -40,6 +40,8 @@ class DeltaLakeDatasets(ColumnarBaseTest):
                 # Load JSON data from file
                 credentials = json.load(file)
                 self.blob_object = GCS(credentials)
+                self.log.info(f"credentials={credentials}")
+                self.log.info(f"self.blob_object={self.blob_object}")
         else:
             self.blob_object = S3(self.aws_access_key, self.aws_secret_key,
                                   region=self.aws_region)
