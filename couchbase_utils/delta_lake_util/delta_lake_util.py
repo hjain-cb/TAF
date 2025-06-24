@@ -114,8 +114,8 @@ class DeltaLakeUtils:
             .setAppName(app_name)
             .set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
             .set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-            # .set("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
-            # .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
+            .set("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
+            .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
             .set("google.cloud.auth.service.account.enable", "true")
             .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", gcs_service_account_path)
             .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
@@ -128,7 +128,6 @@ class DeltaLakeUtils:
 
         extra_packages = [
             "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.16",
-            "com.google.auth:google-auth-library-oauth2-http:1.16.0",
             "org.apache.httpcomponents:httpcore:4.4.13",
         ]
 
