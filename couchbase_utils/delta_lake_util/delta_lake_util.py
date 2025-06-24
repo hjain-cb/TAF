@@ -122,13 +122,13 @@ class DeltaLakeUtils:
             .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
             .set("spark.sql.shuffle.partitions", str(self.sql_partitions))
             .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
-            .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
-            .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
+            .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
+            .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
             .setMaster(f"local[{self.cores_to_use}]")
         )
 
         extra_packages = [
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.0.0",
+            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5",
             "org.apache.httpcomponents:httpcore:4.4.13",
         ]
 
