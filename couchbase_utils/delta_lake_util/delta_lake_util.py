@@ -145,8 +145,10 @@ class DeltaLakeUtils:
         """
         Write data into a Delta Lake table.
         """
+        self.log.info(f"In write_data_into_table")
         try:
             dataframe = self.spark_session.createDataFrame(data)
+            self.log.info(f"type of dataframe: {type(dataframe)}")
             dataframe.write.format("delta").mode(write_mode).save(
                 self.format_storage_path(self.storage_type, bucket_name, delta_table_path)
             )
