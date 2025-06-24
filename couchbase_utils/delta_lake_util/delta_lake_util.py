@@ -117,6 +117,7 @@ class DeltaLakeUtils:
             .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
             .set("google.cloud.auth.service.account.enable", "true")
             .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", gcs_service_account_path)
+            .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
             .set("spark.sql.shuffle.partitions", str(self.sql_partitions))
             .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
             .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
