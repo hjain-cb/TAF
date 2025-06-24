@@ -128,7 +128,7 @@ class DeltaLakeUtils:
         )
 
         extra_packages = [
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-3.0.0",
+            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.16",
             "com.google.auth:google-auth-library-oauth2-http:1.16.0",
             "org.apache.httpcomponents:httpcore:4.4.13",
         ]
