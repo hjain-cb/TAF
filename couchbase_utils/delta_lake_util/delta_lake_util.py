@@ -124,12 +124,12 @@ class DeltaLakeUtils:
             .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
             .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
             .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
+            .set("spark.jars.excludes", "org.apache.httpcomponents:httpcore")
             .setMaster(f"local[{self.cores_to_use}]")
         )
 
         extra_packages = [
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5",
-            "org.apache.httpcomponents:httpcore:4.4.13",
+            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5"
         ]
 
         builder = SparkSession.builder.appName(app_name).config(conf=conf)
