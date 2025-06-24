@@ -114,7 +114,6 @@ class DeltaLakeUtils:
             .setAppName(app_name)
             .set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
             .set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-            .set("spark.eventLog.enabled", "true")
             # .set("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
             # .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
             .set("google.cloud.auth.service.account.enable", "true")
