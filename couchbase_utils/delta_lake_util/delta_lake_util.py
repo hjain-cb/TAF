@@ -109,39 +109,26 @@ class DeltaLakeUtils:
         """
         self.log.info(f"gcs_service_account_path = ${gcs_service_account_path}")
         app_name = BaseUtil.generate_name(max_length=10)
+
         conf = (
-            pyspark.SparkConf()
+            pyspark.conf.SparkConf()
             .setAppName(app_name)
+            .set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+            .set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
             .set("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
             .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
-            .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
+            .set("google.cloud.auth.service.account.enable", "true")
             .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", gcs_service_account_path)
+            .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
             .set("spark.sql.shuffle.partitions", str(self.sql_partitions))
-            .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
-            .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
-            .setMaster("local[2]")
+            .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
+            .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
+            .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
+            .setMaster(f"local[{self.cores_to_use}]")
         )
 
-        # conf = (
-        #     pyspark.conf.SparkConf()
-        #     .setAppName(app_name)
-        #     .set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-        #     .set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-        #     .set("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
-        #     .set("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
-        #     .set("google.cloud.auth.service.account.enable", "true")
-        #     .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", gcs_service_account_path)
-        #     .set("spark.hadoop.google.cloud.auth.service.account.enable", "true")
-        #     .set("spark.sql.shuffle.partitions", str(self.sql_partitions))
-        #     .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
-        #     .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
-        #     .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true -Dlog4j.debug=true")
-        #     .setMaster(f"local[{self.cores_to_use}]")
-        # )
-
         extra_packages = [
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.16",
-            "com.google.auth:google-auth-library-oauth2-http:1.16.0",
+            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.0.0",
             "org.apache.httpcomponents:httpcore:4.4.13",
         ]
 
