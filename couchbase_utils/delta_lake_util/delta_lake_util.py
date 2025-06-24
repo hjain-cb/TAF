@@ -107,6 +107,7 @@ class DeltaLakeUtils:
         """
         Create an Apache Spark session configured for Google Cloud Storage (GCS).
         """
+        self.log.info(f"gcs_service_account_path = ${gcs_service_account_path}")
         app_name = BaseUtil.generate_name(max_length=10)
         conf = (
             pyspark.conf.SparkConf()
