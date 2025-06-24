@@ -123,13 +123,13 @@ class DeltaLakeUtils:
             .set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
             .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
             .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
-            .set("spark.jars.excludes", "org.apache.httpcomponents:httpcore")
             .setMaster(f"local[{self.cores_to_use}]")
         )
 
         extra_packages = [
             "org.apache.hadoop:hadoop-common:3.3.4",
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5",
+            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.16",
+            "com.google.auth:google-auth-library-oauth2-http:1.16.0",
             "org.apache.httpcomponents:httpcore:4.4.13",
         ]
 
