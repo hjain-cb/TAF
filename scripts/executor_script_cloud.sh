@@ -75,6 +75,10 @@ cd lib/capellaAPI/
 git checkout f9e9626f7cbe9e9a1b509525b7faa38cf8ca8a14
 cd ../../
 
+wget https://repo1.maven.org/maven2/com/google/cloud/bigdataoss/gcs-connector/hadoop3-2.2.5/gcs-connector-hadoop3-2.2.5-shaded.jar
+ls
+pwd
+
 # Install requirements for pip
 python -m pip install -r requirements.txt
 

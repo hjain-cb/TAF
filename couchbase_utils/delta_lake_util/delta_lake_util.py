@@ -109,6 +109,8 @@ class DeltaLakeUtils:
         """
         self.log.info(f"gcs_service_account_path = ${gcs_service_account_path}")
         app_name = BaseUtil.generate_name(max_length=10)
+        gcs_connector_path = os.path.join(os.environ["WORKSPACE"], "gcs-connector-hadoop3-2.2.5-shaded.jar")
+        self.log.info(f"gcs_connector_path = ${gcs_connector_path}")
 
         conf = (
             pyspark.conf.SparkConf()
@@ -125,12 +127,9 @@ class DeltaLakeUtils:
             .set("spark.driver.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
             .set("spark.executor.extraJavaOptions", "-Djava.net.preferIPv4Stack=true")
             .set("spark.jars.excludes", "org.apache.httpcomponents:httpcore")
+            .set("spark.jars", gcs_connector_path)
             .setMaster(f"local[{self.cores_to_use}]")
         )
-
-        extra_packages = [
-            "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.5"
-        ]
 
         builder = SparkSession.builder.appName(app_name).config(conf=conf)
         self.spark_session = configure_spark_with_delta_pip(builder, extra_packages=extra_packages).getOrCreate()
