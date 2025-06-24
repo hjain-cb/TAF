@@ -1425,6 +1425,8 @@ class Link_Util(Dataverse_Util):
                         else:
                             params[key] = value
                 params = urllib.parse.urlencode(params)
+                self.log.info("In create_link")
+                self.log.info(f"uri={uri}, params={params}")
                 status, status_code, content, errors = cbas_helper.analytics_link_operations(
                     method="POST", uri=uri, params=params, timeout=timeout,
                     username=username, password=password)
@@ -3033,7 +3035,8 @@ class External_Dataset_Util(Remote_Dataset_Util):
             null_string, include, exclude, parse_json_string,
             convert_decimal_to_double, timezone, embed_filter_values,
             timestamp_to_long, date_to_int, csv_type)
-
+        self.log.info(f"In create_dataset_on_external_resource")
+        self.log.info(f"cmd = {cmd}")
         status, metrics, errors, results, _, warnings = self.execute_statement_on_cbas_util(
             cluster, cmd, username=username, password=password,
             timeout=timeout, analytics_timeout=analytics_timeout)
@@ -3150,6 +3153,7 @@ class External_Dataset_Util(Remote_Dataset_Util):
 
         # get all external link objects
         link_types = dataset_spec.get("include_link_types", [])
+        self.log.info(f"Link Types: {link_types}")
         if not link_types:
             link_types = ["s3", "azure", "gcs"]
 
