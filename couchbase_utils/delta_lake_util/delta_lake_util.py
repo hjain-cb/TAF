@@ -132,7 +132,7 @@ class DeltaLakeUtils:
         )
 
         builder = SparkSession.builder.appName(app_name).config(conf=conf)
-        self.spark_session = configure_spark_with_delta_pip(builder, extra_packages=extra_packages).getOrCreate()
+        self.spark_session = configure_spark_with_delta_pip(builder).getOrCreate()
 
     def close_spark_session(self):
         """
