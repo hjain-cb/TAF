@@ -175,7 +175,7 @@ class ColumnFilter(ColumnarBaseTest):
             # self.log.info("Upsert completed, starting query execution")
             
             dataset = self.cbas_util.get_all_dataset_objs("remote")[0]
-            cmd = f"select count(*) from {dataset.name} where price between 1000 and 1200;"
+            cmd = f"SET `compiler.column.filter` \"true\"; select count(*) from {dataset.name} where price between 1000 and 1200;"
             status, metrics, errors, results, _, warnings = self.cbas_util.execute_statement_on_cbas_util(
                 self.columnar_cluster, cmd)
             if status != "success" or len(results) == 0:
