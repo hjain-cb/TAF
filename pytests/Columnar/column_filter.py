@@ -184,7 +184,7 @@ class ColumnFilter(ColumnarBaseTest):
                 self.fail(f"Failed to run the query: {cmd}")
             self.log.info(f"Count: {results}")
             self.log.info("Sleeping for 10 seconds")
-            time.sleep(10)
+            time.sleep(30)
             print("--------------------------------")
 
     """
