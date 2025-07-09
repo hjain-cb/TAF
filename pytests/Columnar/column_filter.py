@@ -160,9 +160,7 @@ class ColumnFilter(ColumnarBaseTest):
                                     delete_start_index=delete_start_index, delete_end_index=delete_end_index, delete_percent=100, create_percent=0)
         
             self.validate(interval_size)
-            self.log.info("Sleeping for 10 seconds")
-            time.sleep(10)
-            self.initial_insert_completed.clear()
+            # self.initial_insert_completed.clear()
             print("--------------------------------")
 
     def query_execution_job(self):
@@ -172,9 +170,9 @@ class ColumnFilter(ColumnarBaseTest):
             iteration += 1
             self.log.info(f"Iteration query_execution_job {iteration}")
             # Wait for initial insert to complete before starting query execution
-            self.log.info("Waiting for upsert to complete before starting query execution")
+            # self.log.info("Waiting for initial upsert to complete before starting query execution")
             self.initial_insert_completed.wait()
-            self.log.info("Upsert completed, starting query execution")
+            # self.log.info("Upsert completed, starting query execution")
             
             dataset = self.cbas_util.get_all_dataset_objs("remote")[0]
             cmd = f"select count(*) from {dataset.name} where price between 1000 and 1200;"
@@ -192,8 +190,7 @@ class ColumnFilter(ColumnarBaseTest):
         upsert 1M
         delete 50%
     Thread 2: query_execution_job
-        wait until upsert is completed
-        run query until 50% of docs are deleted
+        run query during upsert and delete
     """
     def test_mutate_data(self):
         self.test_setup()
