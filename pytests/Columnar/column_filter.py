@@ -162,6 +162,7 @@ class ColumnFilter(ColumnarBaseTest):
             self.validate(interval_size)
             self.log.info("Sleeping for 10 seconds")
             time.sleep(10)
+            self.initial_insert_completed.clear()
             print("--------------------------------")
 
     def query_execution_job(self):
