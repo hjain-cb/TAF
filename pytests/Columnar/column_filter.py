@@ -188,7 +188,7 @@ class ColumnFilter(ColumnarBaseTest):
             print("--------------------------------")
 
     """
-    def data_mutation_job
+    data_mutation_job
         upsert 1M
         delete 50%
     query_execution_job
