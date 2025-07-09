@@ -172,9 +172,9 @@ class ColumnFilter(ColumnarBaseTest):
             iteration += 1
             self.log.info(f"Iteration query_execution_job {iteration}")
             # Wait for initial insert to complete before starting query execution
-            self.log.info("Waiting for initial insert to complete before starting query execution")
+            self.log.info("Waiting for upsert to complete before starting query execution")
             self.initial_insert_completed.wait()
-            self.log.info("Initial insert completed, starting query execution")
+            self.log.info("Upsert completed, starting query execution")
             
             dataset = self.cbas_util.get_all_dataset_objs("remote")[0]
             cmd = f"select count(*) from {dataset.name} where price between 1000 and 1200;"
@@ -193,7 +193,7 @@ class ColumnFilter(ColumnarBaseTest):
         delete 50%
     query_execution_job
         wait until upsert is completed
-        run query
+        run query until 50% of docs are deleted
     """
     def test_mutate_data(self):
         self.test_setup()
