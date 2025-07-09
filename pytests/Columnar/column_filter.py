@@ -183,7 +183,7 @@ class ColumnFilter(ColumnarBaseTest):
             if status != "success" or len(results) == 0:
                 self.fail(f"Failed to run the query: {cmd}")
             self.log.info(f"Count: {results}")
-            self.log.info("Sleeping for 10 seconds")
+            self.log.info("Sleeping for 30 seconds")
             time.sleep(30)
             print("--------------------------------")
 
