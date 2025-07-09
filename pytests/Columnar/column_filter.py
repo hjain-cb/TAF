@@ -188,10 +188,10 @@ class ColumnFilter(ColumnarBaseTest):
             print("--------------------------------")
 
     """
-    data_mutation_job
+    Thread 1: data_mutation_job
         upsert 1M
         delete 50%
-    query_execution_job
+    Thread 2: query_execution_job
         wait until upsert is completed
         run query until 50% of docs are deleted
     """
