@@ -77,6 +77,7 @@ python -m pip install -r requirements.txt
 # Export JAVA_HOME for delta_spark dependencies to work
 tem_java_home=`update-alternatives --list java | head -1 | sed  's|/bin/java||g'`
 export JAVA_HOME=`echo $tem_java_home | sed  's|/jre||g'`
+export MAVEN_OPTS=""
 echo "JAVA_HOME is $JAVA_HOME"
 # Fetch rerun job to run
 echo "" > rerun_props_file
@@ -301,9 +302,7 @@ if [ "$?" -eq 0 ]; then
   echo "Building Java doc-loader using mvn"
   mkdir -p logs
   cd DocLoader
-  export MAVEN_OPTS="-XX:MaxPermSize=512m"
   mvn clean compile package > ../logs/sirius_build.log
-  cat ../logs/sirius_build.log
   if [ $? -ne 0 ]; then
     echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     echo "   Exiting.. Maven build failed"
