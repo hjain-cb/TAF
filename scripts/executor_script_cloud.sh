@@ -301,6 +301,7 @@ if [ "$?" -eq 0 ]; then
   echo "Building Java doc-loader using mvn"
   mkdir -p logs
   cd DocLoader
+  export MAVEN_OPTS="-XX:MaxPermSize=512m"
   mvn clean compile package > ../logs/sirius_build.log
   if [ $? -ne 0 ]; then
     echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
