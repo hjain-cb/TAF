@@ -187,7 +187,7 @@ class ColumnFilter(ColumnarBaseTest):
 
     """
     Thread 1: data_mutation_job
-        upsert 1M
+        upsert 20M
         delete 50%
     Thread 2: query_execution_job
         run query during upsert and delete
