@@ -303,6 +303,7 @@ if [ "$?" -eq 0 ]; then
   cd DocLoader
   export MAVEN_OPTS="-XX:MaxPermSize=512m"
   mvn clean compile package > ../logs/sirius_build.log
+  cat ../logs/sirius_build.log
   if [ $? -ne 0 ]; then
     echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     echo "   Exiting.. Maven build failed"
